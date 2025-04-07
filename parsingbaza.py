@@ -15,10 +15,14 @@ async def main():
         async with session.get(BASE_URL, headers = HEADERS) as response:
             r = await aiohttp.StreamReader.read(response.content)
             soup = BS(r, 'html.parser')
-            items = soup.findAll('p')
+            item = soup.find('p').get_text().strip()
+            print(item)
+            
+
+            
     
 
-            print(items)
+            # print(items)
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
